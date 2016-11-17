@@ -28,7 +28,7 @@ class EchoHandler(socketserver.DatagramRequestHandler):
                 self.wfile.write(b"SIP/2.0 100 Trying")
                 self.wfile.write(b"SIP/2.0 180 Ring")
                 self.wfile.write(b"SIP/2.0 200 OK")
-                os.system("./mp32rtp -i " + sys.argv[1] + " -p " + sys.argv[2] + " < " + sys.argv[3])
+                os.system("./mp32rtp -i " + sys.argv[1] + " -p 23032 < " + sys.argv[3])
             elif method != "INVITE" or "BYE" or "ACK":
                 self.wfile.write(b"SIP/2.0 405 Method Not Allowed")
 
