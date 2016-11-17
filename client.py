@@ -24,9 +24,9 @@ except:
 if METHOD == ("INVITE"):
     LINE = "INVITE " + Aux_Line + " SIP/2.0"
 elif METHOD == ("ACK"):
-    LINE = "ACK " + Aux_Line + " SIP/2.0"
+    LINE = "ACK " + Aux_Line + " SIP/2.0" """se envia al recibir los try/rng/ok"""
 elif METHOD == ("BYE"):
-    LINE = "BYE " + Aux_Line + " SIP/2.0"
+    LINE = "BYE " + Aux_Line + " SIP/2.0" """se llama al acabar el streaming de audio desde el server"""
 
 # Creamos el socket, lo configuramos y lo atamos a un servidor/puerto
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
