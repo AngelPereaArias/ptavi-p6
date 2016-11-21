@@ -6,9 +6,8 @@ import socketserver
 import os
 import sys
 
-os.system("clear")
 
-class EchoHandler(socketserver.DatagramRequestHandler):
+class EHand(socketserver.DatagramRequestHandler):
     """
     Echo server class
     """
@@ -28,9 +27,10 @@ class EchoHandler(socketserver.DatagramRequestHandler):
                     Msg += b"SIP/2.0 180 Ring\r\n\r\n"
                     Msg += b"SIP/2.0 200 OK\r\n\r\n"
                     self.wfile.write(Msg)
-                    
+
                 elif method == "ACK":
-                    os.system("./mp32rtp -i " + sys.argv[1] + " -p 23032 < " + song)
+                    IP = sys.argv[1]
+                    os.system("./mp32rtp -i " + IP + " -p 23032 < " + song)
 
                 elif method == "BYE":
                     self.wfile.write(b"SIP/2.0 200 OK\r\n\r\n")
@@ -41,7 +41,7 @@ class EchoHandler(socketserver.DatagramRequestHandler):
 
                 else:
                     self.wfile.write(b"SIP/2.0 400 Bad Request\r\n\r\n")
-            
+
             # Si no hay más líneas salimos del bucle infinito
             if not line:
                 break
@@ -52,7 +52,7 @@ class EchoHandler(socketserver.DatagramRequestHandler):
 if __name__ == "__main__":
     # Creamos servidor de eco y escuchamos
     try:
-        serv = socketserver.UDPServer((sys.argv[1], int(sys.argv[2])), EchoHandler)
+        serv = socketserver.UDPServer((sys.argv[1], int(sys.argv[2])), EHand)
         song = sys.argv[3]
     except:
         sys.exit("Usage: python3 server.py.py IP Port cancion.mp3")
