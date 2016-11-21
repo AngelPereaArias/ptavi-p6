@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-""" Clase (y programa principal) para un servidor de eco en UDP simple. """
+"""Clase (y programa principal) para un servidor de eco en UDP simple."""
 
 import socketserver
 import os
@@ -8,9 +8,10 @@ import sys
 
 
 class EHand(socketserver.DatagramRequestHandler):
-    """ Echo server class. """
+    """Echo server class."""
 
     def handle(self):
+        """bucle para recepción de los clientes."""
         methods = ["ACK", "BYE", "INVITE"]
 
         # Escribe dirección y puerto del cliente (de tupla client_address).
