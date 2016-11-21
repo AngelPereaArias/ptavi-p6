@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-"""
-Clase (y programa principal) para un servidor de eco en UDP simple
-"""
+""" Clase (y programa principal) para un servidor de eco en UDP simple. """
 
 import socketserver
 import os
@@ -38,7 +36,6 @@ class EchoHandler(socketserver.DatagramRequestHandler):
                     self.wfile.write(b"SIP/2.0 200 OK\r\n\r\n")
 
                 elif method and method not in methods:
-                    print("LMAO")
                     print(method)
                     self.wfile.write(b"SIP/2.0 405 Method Not Allowed\r\n\r\n")
 
