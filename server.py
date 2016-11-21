@@ -8,16 +8,14 @@ import sys
 
 
 class EHand(socketserver.DatagramRequestHandler):
-    """
-    Echo server class
-    """
+    """ Echo server class. """
 
     def handle(self):
         methods = ["ACK", "BYE", "INVITE"]
 
-        # Escribe dirección y puerto del cliente (de tupla client_address)
+        # Escribe dirección y puerto del cliente (de tupla client_address).
         while 1:
-            # Leyendo línea a línea lo que nos envía el cliente
+            # Leyendo línea a línea lo que nos envía el cliente.
             line = self.rfile.read()
             line = line.decode("utf-8")
             method = line[:line.find(" ")]
@@ -42,7 +40,7 @@ class EHand(socketserver.DatagramRequestHandler):
                 else:
                     self.wfile.write(b"SIP/2.0 400 Bad Request\r\n\r\n")
 
-            # Si no hay más líneas salimos del bucle infinito
+            # Si no hay más líneas salimos del bucle infinito.
             if not line:
                 break
 
@@ -50,7 +48,7 @@ class EHand(socketserver.DatagramRequestHandler):
 
 
 if __name__ == "__main__":
-    # Creamos servidor de eco y escuchamos
+    # Creamos servidor de eco y escuchamos.
     try:
         serv = socketserver.UDPServer((sys.argv[1], int(sys.argv[2])), EHand)
         song = sys.argv[3]
